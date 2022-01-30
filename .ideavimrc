@@ -1,0 +1,163 @@
+" ============================================================================
+" PLUGINS
+" ============================================================================
+
+set NERDTree
+set commentary
+set easymotion 
+set highlightedyank
+set surround
+set multiple-cursors
+set argtextobj
+set exchange
+
+" ============================================================================
+" BASIC SETTINGS
+" ============================================================================
+
+" Show current mode
+set showmode
+
+" Set the Leader to <Space>
+let mapleader = " "
+
+" Always use system clipboard
+set clipboard+=unnamed
+
+" Display line numbers (relative in Normal and absolute in Insert)
+set relativenumber number
+
+" Always have lines above/below the cursor for better overview
+set scrolloff=10
+
+" Do incremental searching.
+set incsearch
+
+" Searching
+set ignorecase
+
+" ============================================================================
+" KEYBINDINGS - GENERAL
+" ============================================================================
+
+" Scroll multiple lines
+map J 5j
+map K 5k
+
+" Remap move to beginning/end of line
+nnoremap H _
+nnoremap L $
+vnoremap H _
+vnoremap L $
+
+" Remap move to beginning/end of buffer
+nnoremap <CR> G
+vnoremap <CR> G
+nnoremap <BS> gg
+
+" Move to the next empty line
+map , }
+map ; {
+
+" Join lines
+nnoremap <leader><leader>j J
+
+" Use tab/shift+tab for indenting
+nmap <Tab> a<C-t><Esc>
+nnoremap <S-Tab> a<C-d><Esc>
+vnoremap < >gv
+vnoremap > <gv
+
+" ============================================================================
+" KEYBINDINGS - Splits
+" ============================================================================
+
+" Open and close splits
+map <leader>v <Action>(SplitVertically)<C-W>l
+map <leader>x <Action>(SplitHorizontally)<C-W>j
+map <leader>w <Action>(CloseContent)
+
+
+" Move between buffers with arrows
+map <Left> gT
+map <Right> gt
+
+" Move between splits with ctrl+arrows
+nnoremap <C-j> <C-W>j
+nnoremap <C-k> <C-W>k
+nnoremap <C-h> <C-W>h
+nnoremap <C-l> <C-W>l
+
+" ============================================================================
+" KEYBINDINGS - Editing
+" ============================================================================
+
+" Operations until next closing brackets
+nmap cb c%
+nmap db d%
+nmap yb y%
+
+" Highlight just the text (no indents) in line
+nnoremap vv ^vg_
+
+" Copy just the text (no indents) in line
+nnoremap yy ^yg_
+
+" Move words by camelCase
+nmap w [w
+nmap b [b
+
+" qq to record macro, Q to replay it
+nnoremap Q @q
+vnoremap Q :normal @q<CR>
+
+" toggle git annotations
+map <leader>g <Action>(Annotate)
+
+" create new cursor below
+map <C-S-j> <Action>(EditorCloneCaretBelow)
+
+" ============================================================================
+" KEYBINDINGS - Search
+" ============================================================================
+map <leader>f <Action>(FindInPath)
+map <leader>F viw<Action>(FindInPath)
+
+" Start search with with 's' in normal mode 
+nmap s /
+
+" Start search with with 's' in normal mode 
+vnoremap s y/<C-r>"<CR>N
+
+" ============================================================================
+" KEYBINDINGS - Navigation
+" ============================================================================
+map <leader>t <Action>(GotoFile)
+map gn <Action>(GotoDeclaration)
+
+" ============================================================================
+" KEYBINDINGS - PLUGINS
+" ============================================================================
+
+" NerdTree
+map <leader>n :NERDTreeToggle<CR>
+map <leader>c :NERDTreeFind<CR>
+
+" Commentary
+map <C-c> gcc
+
+" EasyMotion -> TODO: Not working yet?! :(
+" map f <Plug>(easymotion-bd-f)
+" map F <Plug>(easymotion-bd-f2)
+
+" Surround
+" Remap multiple-cursors shortcuts to match terryma/vim-multiple-cursors
+nmap <C-n> <Plug>NextOccurrence
+xmap <C-n> <Plug>NextOccurrence
+nmap <C-p> <Plug>RemoveOccurrence
+xmap <C-p> <Plug>RemoveOccurrence
+nmap <C-a> <Plug>AllOccurrences
+xmap <C-a> <Plug>AllOccurrences
+
+
+" Find more examples here: https://jb.gg/share-ideavimrc
